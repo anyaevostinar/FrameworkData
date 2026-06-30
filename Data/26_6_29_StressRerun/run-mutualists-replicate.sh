@@ -8,8 +8,8 @@
 #SBATCH --mail-user=does_not_work@carleton.edu
 
 ## Job name settings (These do matter, so UPDATE THEM)
-#SBATCH --job-name=hnodiff
-#SBATCH -o hnodiff%A_%a.out
+#SBATCH --job-name=sm
+#SBATCH -o sm%A_%a.out
 
 ## Memory requirement in megabytes. You might need to make this bigger.
 #SBATCH --mem-per-cpu=2000M
@@ -19,18 +19,18 @@
 
 #SBATCH --nodes=1
 
-cd /Accounts/vostinar/FrameworkData/Data/26_6_29_HealthRerun
-mkdir NoSymsDiff
-cd NoSymsDiff
+cd /Accounts/vostinar/FrameworkData/Data/26_6_29_StressRerun
+mkdir MutualistsDiff
+cd MutualistsDiff
 
 mkdir ${SLURM_ARRAY_TASK_ID}
 cd ${SLURM_ARRAY_TASK_ID}
 
-cp /Accounts/vostinar/FrameworkData/Data/26_6_29_HealthRerun/SymSettings.cfg .
-cp /Accounts/vostinar/FrameworkData/Data/26_6_29_HealthRerun/diff-reward-env.json .
+cp /Accounts/vostinar/FrameworkData/Data/26_6_29_StressRerun/SymSettings.cfg .
+cp /Accounts/vostinar/FrameworkData/Data/26_6_29_StressRerun/diff-reward-env.json .
 cp /Accounts/vostinar/FrameworkData/SymbulationEmp/symbulation_sgp .
 
-args=" -START_MOI 0 -ENABLE_HEALTH true -HEALTH_TYPE mutualist -TASK_ENV_CFG_PATH diff-reward-env.json -HOST_REPRO_RES 256 -SYM_HORIZ_TRANS_RES 128"
+args=" -START_MOI 1 -ENABLE_STRESS true -STRESS_TYPE mutualist -VERTICAL_TRANSMISSION 1 -TASK_ENV_CFG_PATH diff-reward-env.json -HOST_REPRO_RES 100 -SYM_HORIZ_TRANS_RES 50"
 ./symbulation_sgp $args -SEED ${SLURM_ARRAY_TASK_ID} > run.log
 
-## Run with sbatch -p facultynode --nodelist=edmonstone2024,margulis2024,carver,lederberg run-diffreward-nosym.sh
+## Run with sbatch -p facultynode --nodelist=edmonstone2024,margulis2024,carver,lederberg run-mutualists-replicate.sh
