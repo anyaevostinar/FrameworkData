@@ -12,7 +12,7 @@
 #SBATCH -o hns%A_%a.out
 
 ## Memory requirement in megabytes. You might need to make this bigger.
-#SBATCH --mem-per-cpu=550M
+#SBATCH --mem-per-cpu=1000M
 
 ## Launch an array of jobs. This determines your random seeds
 #SBATCH --array=100-129
