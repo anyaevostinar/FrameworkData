@@ -8,8 +8,8 @@
 #SBATCH --mail-user=does_not_work@carleton.edu
 
 ## Job name settings (These do matter, so UPDATE THEM)
-#SBATCH --job-name=hns
-#SBATCH -o hns%A_%a.out
+#SBATCH --job-name=sp
+#SBATCH -o sp%A_%a.out
 
 ## Memory requirement in megabytes. You might need to make this bigger.
 #SBATCH --mem-per-cpu=800M
@@ -19,18 +19,18 @@
 
 #SBATCH --nodes=1
 
-cd /Accounts/vostinar/FrameworkData/Data/26_6_29_HealthRerun
-mkdir NoSymsFlat
-cd NoSymsFlat
+cd /Accounts/vostinar/FrameworkData/Data/26_6_29_StressRerun
+mkdir ParasitesFlat
+cd ParasitesFlat
 
 mkdir ${SLURM_ARRAY_TASK_ID}
 cd ${SLURM_ARRAY_TASK_ID}
 
-cp /Accounts/vostinar/FrameworkData/Data/26_6_29_HealthRerun/SymSettings.cfg .
-cp /Accounts/vostinar/FrameworkData/Data/26_6_29_HealthRerun/flat-reward-1-env.json .
+cp /Accounts/vostinar/FrameworkData/Data/26_6_29_StressRerun/SymSettings.cfg .
+cp /Accounts/vostinar/FrameworkData/Data/26_6_29_StressRerun/flat-reward-1-env.json .
 cp /Accounts/vostinar/FrameworkData/SymbulationEmp/symbulation_sgp .
 
-args=" -START_MOI 0 -ENABLE_HEALTH true -HEALTH_TYPE parasite -TASK_ENV_CFG_PATH flat-reward-1-env.json -HOST_REPRO_RES 1 -SYM_HORIZ_TRANS_RES 1"
+args=" -START_MOI 1 -ENABLE_STRESS true -STRESS_TYPE parasite -TASK_ENV_CFG_PATH flat-reward-1-env.json -HOST_REPRO_RES 1 -SYM_HORIZ_TRANS_RES 1"
 ./symbulation_sgp $args -SEED ${SLURM_ARRAY_TASK_ID} > run.log
 
-## Run with sbatch -p facultynode --nodelist=edmonstone2024,margulis2024,carver,lederberg run-flatreward-nosym.sh
+## Run with sbatch -p facultynode --nodelist=edmonstone2024,margulis2024,carver,lederberg run-parasites-replicate.sh
