@@ -30,7 +30,7 @@ cp /Accounts/vostinar/FrameworkData/Data/26_6_29_StressRerun/SymSettings.cfg .
 cp /Accounts/vostinar/FrameworkData/Data/26_6_29_StressRerun/flat-reward-1-env.json .
 cp /Accounts/vostinar/FrameworkData/SymbulationEmp/symbulation_sgp .
 
-args=" -START_MOI 1 -ENABLE_STRESS true -STRESS_TYPE parasite -TASK_ENV_CFG_PATH flat-reward-1-env.json -HOST_REPRO_RES 1 -SYM_HORIZ_TRANS_RES 1"
+args=" -START_MOI 1 -ENABLE_STRESS true -STRESS_TYPE parasite -TASK_ENV_CFG_PATH flat-reward-5-env.json -HOST_REPRO_RES 1 -SYM_HORIZ_TRANS_RES 1"
 ./symbulation_sgp $args -SEED ${SLURM_ARRAY_TASK_ID} > run.log
 
 ## Run with sbatch -p facultynode --nodelist=edmonstone2024,margulis2024,carver,lederberg run-parasites-replicate.sh
