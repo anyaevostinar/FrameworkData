@@ -27,7 +27,7 @@ mkdir ${SLURM_ARRAY_TASK_ID}
 cd ${SLURM_ARRAY_TASK_ID}
 
 cp /Accounts/vostinar/FrameworkData/Data/26_6_29_StressRerun/SymSettings.cfg .
-cp /Accounts/vostinar/FrameworkData/Data/26_6_29_StressRerun/flat-reward-1-env.json .
+cp /Accounts/vostinar/FrameworkData/Data/26_6_29_StressRerun/flat-reward-5-env.json .
 cp /Accounts/vostinar/FrameworkData/SymbulationEmp/symbulation_sgp .
 
 args=" -START_MOI 0 -ENABLE_STRESS true -STRESS_TYPE parasite -TASK_ENV_CFG_PATH flat-reward-5-env.json -HOST_REPRO_RES 1 -SYM_HORIZ_TRANS_RES 1"
