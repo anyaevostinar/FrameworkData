@@ -31,7 +31,7 @@ cp /Accounts/vostinar/FrameworkData/Data/26_6_29_HealthRerun/flat-reward-1-env.j
 cp /Accounts/vostinar/FrameworkData/SymbulationEmp/symbulation_sgp .
 
 ## THIS IS AN EXAMPLE, UPDATE TO CORRECT THINGS
-args=" -START_MOI 1 -ENABLE_HEALTH true -HEALTH_TYPE parasite -TASK_ENV_CFG_PATH flat-reward-1-env.json -HOST_REPRO_RES 1 -SYM_HORIZ_TRANS_RES 1"
+args=" -START_MOI 1 -HEALTH_TYPE parasite -TASK_ENV_CFG_PATH flat-reward-1-env.json -HOST_REPRO_RES 1 -SYM_HORIZ_TRANS_RES 1"
 ./symbulation_sgp $args -SEED ${SLURM_ARRAY_TASK_ID} > run.log
 
 ## Run with sbatch -p facultynode --nodelist=edmonstone2024,margulis2024,carver,lederberg run-parasites-replicate.sh
