@@ -8,8 +8,8 @@
 #SBATCH --mail-user=does_not_work@carleton.edu
 
 ## Job name settings (These do matter, so UPDATE THEM)
-#SBATCH --job-name=sns-diff
-#SBATCH -o sns-diff%A_%a.out
+#SBATCH --job-name=d1ns
+#SBATCH -o d1nsf%A_%a.out
 
 ## Memory requirement in megabytes. You might need to make this bigger.
 #SBATCH --mem-per-cpu=2000M
@@ -19,15 +19,15 @@
 
 #SBATCH --nodes=1
 
-cd /Accounts/vostinar/FrameworkData/Data/26_6_29_StressRerun
+cd /Accounts/vostinar/FrameworkData/Data/26_7_7_StressMutualistsDelta1
 mkdir NoSymsDiff
 cd NoSymsDiff
 
 mkdir ${SLURM_ARRAY_TASK_ID}
 cd ${SLURM_ARRAY_TASK_ID}
 
-cp /Accounts/vostinar/FrameworkData/Data/26_6_29_StressRerun/SymSettings.cfg .
-cp /Accounts/vostinar/FrameworkData/Data/26_6_29_StressRerun/diff-reward-env.json .
+cp /Accounts/vostinar/FrameworkData/Data/26_7_7_StressMutualistsDelta1/SymSettings.cfg .
+cp /Accounts/vostinar/FrameworkData/Data/26_7_7_StressMutualistsDelta1/diff-reward-env.json .
 cp /Accounts/vostinar/FrameworkData/SymbulationEmp/symbulation_sgp .
 
 args=" -START_MOI 0 -STRESS_TYPE mutualist -VERTICAL_TRANSMISSION 1 -TASK_ENV_CFG_PATH diff-reward-env.json -HOST_REPRO_RES 100 -SYM_HORIZ_TRANS_RES 50 -HOST_MIN_CYCLES_BEFORE_REPRO 0 -SYM_MIN_CYCLES_BEFORE_REPRO 0"

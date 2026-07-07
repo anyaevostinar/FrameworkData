@@ -8,8 +8,8 @@
 #SBATCH --mail-user=does_not_work@carleton.edu
 
 ## Job name settings (These do matter, so UPDATE THEM)
-#SBATCH --job-name=sm
-#SBATCH -o sm%A_%a.out
+#SBATCH --job-name=d1m
+#SBATCH -o d1m%A_%a.out
 
 ## Memory requirement in megabytes. You might need to make this bigger.
 #SBATCH --mem-per-cpu=2000M
