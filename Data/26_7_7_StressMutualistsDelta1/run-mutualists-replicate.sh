@@ -19,18 +19,18 @@
 
 #SBATCH --nodes=1
 
-cd /Accounts/vostinar/FrameworkData/Data/26_6_29_StressRerun
+cd /Accounts/vostinar/FrameworkData/Data/26_7_7_StressMutualistsDelta1
 mkdir MutualistsDiff
 cd MutualistsDiff
 
 mkdir ${SLURM_ARRAY_TASK_ID}
 cd ${SLURM_ARRAY_TASK_ID}
 
-cp /Accounts/vostinar/FrameworkData/Data/26_6_29_StressRerun/SymSettings.cfg .
-cp /Accounts/vostinar/FrameworkData/Data/26_6_29_StressRerun/diff-reward-env.json .
+cp /Accounts/vostinar/FrameworkData/Data/26_7_7_StressMutualistsDelta1/SymSettings.cfg .
+cp /Accounts/vostinar/FrameworkData/Data/26_7_7_StressMutualistsDelta1/diff-reward-env.json .
 cp /Accounts/vostinar/FrameworkData/SymbulationEmp/symbulation_sgp .
 
-args=" -START_MOI 1 -STRESS_TYPE mutualist -VERTICAL_TRANSMISSION 1 -TASK_ENV_CFG_PATH diff-reward-env.json -HOST_REPRO_RES 100 -SYM_HORIZ_TRANS_RES 50"
+args=" -START_MOI 1 -STRESS_TYPE mutualist -VERTICAL_TRANSMISSION 1 -TASK_ENV_CFG_PATH diff-reward-env.json -HOST_REPRO_RES 100 -SYM_HORIZ_TRANS_RES 50 -HOST_MIN_CYCLES_BEFORE_REPRO 0 -SYM_MIN_CYCLES_BEFORE_REPRO 0"
 ./symbulation_sgp $args -SEED ${SLURM_ARRAY_TASK_ID} > run.log
 
 ## Run with sbatch -p facultynode --nodelist=edmonstone2024,margulis2024,carver,lederberg run-mutualists-replicate.sh

@@ -30,7 +30,7 @@ cp /Accounts/vostinar/FrameworkData/Data/26_6_29_HealthRerun/SymSettings.cfg .
 cp /Accounts/vostinar/FrameworkData/Data/26_6_29_HealthRerun/diff-reward-env.json .
 cp /Accounts/vostinar/FrameworkData/SymbulationEmp/symbulation_sgp .
 
-args=" -START_MOI 1 -VERTICAL_TRANSMISSION 1 -HEALTH_TYPE mutualist -TASK_ENV_CFG_PATH diff-reward-env.json -HOST_REPRO_RES 256 -SYM_HORIZ_TRANS_RES 128"
+args=" -START_MOI 1 -VERTICAL_TRANSMISSION 1 -HEALTH_TYPE mutualist -TASK_ENV_CFG_PATH diff-reward-env.json -HOST_REPRO_RES 256 -SYM_HORIZ_TRANS_RES 128 -HOST_MIN_CYCLES_BEFORE_REPRO 0 -SYM_MIN_CYCLES_BEFORE_REPRO 0"
 ./symbulation_sgp $args -SEED ${SLURM_ARRAY_TASK_ID} > run.log
 
 ## Run with sbatch -p facultynode --nodelist=edmonstone2024,margulis2024,carver,lederberg run-mutualist-replicate.sh
