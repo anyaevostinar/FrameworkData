@@ -1,0 +1,1 @@
+Using same settings as 26_6_29_StressRerun, which should generally match Saved by the Symbiont paper, with recovery time/stress frequency at 50 updates, which should have delta ~= 1 to see what happens compared to analytical ODE model.
