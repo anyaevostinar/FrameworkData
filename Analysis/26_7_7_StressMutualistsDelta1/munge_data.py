@@ -16,7 +16,7 @@ outFile.write(header)
 
 for t in treatment_folders:
     for r in reps:
-        fname = folder + "/"+t+"/" + str(r) + "/Tasks_data.csv"
+        fname = folder + "/"+t+"/" + str(r) + "/output/Tasks_data.csv"
         uid = t + "_" + str(r)
         curFile = open(fname, 'r')
         for line in curFile:
