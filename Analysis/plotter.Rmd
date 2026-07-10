@@ -1,0 +1,84 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(ggplot2)
+library(viridis)
+library(Hmisc)
+library(reshape2) 
+library(reshape) 
+library(ggh4x)
+library(tidyverse)
+library(cowplot)
+```
+
+```{r}
+facet_nested_theme <- theme(
+    strip.background = element_rect(fill = "white", colour = "grey", linetype="dotted", size = 0.2, linewidth=30), 
+    panel.background = element_rect(fill='white', color='grey'),
+    panel.border = element_blank(),
+    panel.grid.major = element_blank(), 
+    panel.grid.minor = element_blank(),
+    legend.key = element_rect(color = "transparent"),
+    panel.spacing.x = unit(0,"line"),
+    panel.spacing.y = unit(0,"line"))
+```
+# task counts
+
+## read data
+```{r}
+
+tasks_df <- read.table("26_7_7_StressMutualistsDelta1/munged_basic_tasks.dat", h=T)
+tasks_df$task <- factor(tasks_df$task, levels = c("NOT", "NAND", "OR_NOT", "AND", "OR", "AND_NOT", "NOR", "XOR", "EQU"))
+tasks_df <- subset(tasks_df, update > 400000)
+```
+
+
+
+## per update
+
+```{r}
+task_hist_plotter <- function(o="Host", t="parasites"){
+  
+  plot <- tasks_df %>% filter(partner == o) %>% filter(treatment == t) %>% 
+    group_by(rep) %>%
+    ggplot(aes(update, task_count)) + 
+    geom_area(aes(fill=task), position='stack') +
+    ylab("Count of task completions") + xlab("Updates") +
+    facet_wrap(~rep) + 
+    facet_nested_theme + 
+    scale_fill_manual(name="Task",values=turbo(10)) + 
+    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+    ggtitle(paste0(o))
+  return(plot)
+}
+```
+
+```{r}
+host_plot <- task_hist_plotter("Host", "MutualistsDiff")
+left <- plot_grid(host_plot)
+
+sym_plot <- task_hist_plotter("Sym", "MutualistsDiff")
+right <- plot_grid(sym_plot)
+
+#sym_plot <- task_hist_plotter("Sym", "parasites")
+#right <- plot_grid(sym_plot)
+host_plot_3 <- task_hist_plotter("Host", "NoSymsDiff")
+rightest <- plot_grid(host_plot_3)
+
+#host_plot_2 <- task_hist_plotter("Host", "flatreward-nosyms")
+#righter <- plot_grid(host_plot_2)
+
+#host_plot_4 <- task_hist_plotter("Host", "diffreward-nosyms")
+#rightmost <- plot_grid(host_plot_2)
+
+#plot_grid(left,rightest,righter,rightmost)
+plot_grid(left)
+plot_grid(right)
+plot_grid(rightest)
+```
