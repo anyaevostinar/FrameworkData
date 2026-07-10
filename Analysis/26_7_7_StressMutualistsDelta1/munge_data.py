@@ -1,7 +1,7 @@
 import os.path
 import gzip
 
-folder = '../../Data/26_7_7_StressMutualistsDelta1/'
+folder = '../../Data/26_7_7_StressMutualistsDelta1'
 
 treatment_folders = ["MutualistsDiff", "NoSymsDiff"]
 reps = range(100,130)
