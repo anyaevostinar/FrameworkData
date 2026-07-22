@@ -30,7 +30,7 @@ cp /Accounts/USERNAME/FrameworkData/Data/26_7_22_Nutrient/SymSettings.cfg .
 cp /Accounts/USERNAME/FrameworkData/Data/26_7_22_Nutrient/flat-reward-2-env.json .
 cp /Accounts/USERNAME/SymbulationEmp/symbulation_sgp .
 
-args=" -START_MOI 0 -HEALTH_TYPE parasite -TASK_ENV_CFG_PATH flat-reward-2-env.json -HOST_REPRO_RES 3.5 -SYM_HORIZ_TRANS_RES 1 -HOST_ONLY_FIRST_TASK_CREDIT 0"
+args=" -START_MOI 0 -NUTRIENT_TYPE parasite -TASK_ENV_CFG_PATH flat-reward-2-env.json -HOST_REPRO_RES 3.5 -SYM_HORIZ_TRANS_RES 1 -HOST_ONLY_FIRST_TASK_CREDIT 0"
 ./symbulation_sgp $args -SEED ${SLURM_ARRAY_TASK_ID} > run.log
 
 ## Run with sbatch -p facultynode --nodelist=edmonstone2024,margulis2024,carver,lederberg run-flatreward-nosym.sh

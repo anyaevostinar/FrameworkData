@@ -19,18 +19,18 @@
 
 #SBATCH --nodes=1
 
-cd /Accounts/USERNAME/FrameworkData/Data/26_7_22_Nutrient
+cd /Accounts/hillmane/FrameworkData/Data/26_7_22_Nutrient
 mkdir NoSymsDiff
 cd NoSymsDiff
 
 mkdir ${SLURM_ARRAY_TASK_ID}
 cd ${SLURM_ARRAY_TASK_ID}
 
-cp /Accounts/USERNAME/FrameworkData/Data/26_7_22_Nutrient/SymSettings.cfg .
-cp /Accounts/USERNAME/FrameworkData/Data/26_7_22_Nutrient/diff-reward-env.json .
-cp /Accounts/USERNAME/SymbulationEmp/symbulation_sgp .
+cp /Accounts/hillmane/FrameworkData/Data/26_7_22_Nutrient/SymSettings.cfg .
+cp /Accounts/hillmane/FrameworkData/Data/26_7_22_Nutrient/diff-reward-env.json .
+cp /Accounts/hillmane/SymbulationEmp/symbulation_sgp .
 
-args=" -START_MOI 0 -VERTICAL_TRANSMISSION 1 -HEALTH_TYPE mutualist -TASK_ENV_CFG_PATH diff-reward-env.json -HOST_REPRO_RES 256 -SYM_HORIZ_TRANS_RES 128 -HOST_MIN_CYCLES_BEFORE_REPRO 0 -SYM_MIN_CYCLES_BEFORE_REPRO 0 -HOST_ONLY_FIRST_TASK_CREDIT 1"
+args=" -START_MOI 0 -VERTICAL_TRANSMISSION 1 -NUTRIENT_TYPE mutualist -TASK_ENV_CFG_PATH diff-reward-env.json -HOST_REPRO_RES 256 -SYM_HORIZ_TRANS_RES 128 -HOST_MIN_CYCLES_BEFORE_REPRO 0 -SYM_MIN_CYCLES_BEFORE_REPRO 0 -HOST_ONLY_FIRST_TASK_CREDIT 1"
 ./symbulation_sgp $args -SEED ${SLURM_ARRAY_TASK_ID} > run.log
 
 ## Run with sbatch -p facultynode --nodelist=edmonstone2024,margulis2024,carver,lederberg run-diffreward-nosyms.sh
