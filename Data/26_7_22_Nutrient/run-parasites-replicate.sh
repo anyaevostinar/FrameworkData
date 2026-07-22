@@ -20,16 +20,16 @@
 
 #SBATCH --nodes=1
 
-cd /Accounts/USERNAME/FrameworkData/Data/26_7_22_Nutrient
+cd /Accounts/hillmane/FrameworkData/Data/26_7_22_Nutrient
 mkdir ParasitesFlat
 cd ParasitesFlat
 
 mkdir ${SLURM_ARRAY_TASK_ID}
 cd ${SLURM_ARRAY_TASK_ID}
 
-cp /Accounts/USERNAME/FrameworkData/Data/26_7_22_Nutrient/SymSettings.cfg .
-cp /Accounts/USERNAME/FrameworkData/Data/26_7_22_Nutrient/flat-reward-2-env.json .
-cp /Accounts/USERNAME/SymbulationEmp/symbulation_sgp .
+cp /Accounts/hillmane/FrameworkData/Data/26_7_22_Nutrient/SymSettings.cfg .
+cp /Accounts/hillmane/FrameworkData/Data/26_7_22_Nutrient/flat-reward-2-env.json .
+cp /Accounts/hillmane/SymbulationEmp/symbulation_sgp .
 
 ## THIS IS AN EXAMPLE, UPDATE TO CORRECT THINGS
 args=" -START_MOI 1 -NUTRIENT_TYPE parasite -TASK_ENV_CFG_PATH flat-reward-2-env.json -HOST_REPRO_RES 3.5 -SYM_HORIZ_TRANS_RES 1 -HOST_ONLY_FIRST_TASK_CREDIT 0"
